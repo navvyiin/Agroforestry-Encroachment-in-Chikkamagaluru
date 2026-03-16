@@ -1,0 +1,10 @@
+Shade Coffee mean suitability: 0.6469
+Sun Coffee mean suitability:   0.6470
+Difference:                    -0.0001
+Mann-Whitney U p-value:        6.0810e-01
+Cohen's d:                     -0.0009
+Significant (p<0.05):          False
+Shade high-suit (>0.6):        68.1%
+Sun high-suit (>0.6):          68.3%
+Shade in bottleneck:           1.2%
+Sun in bottleneck:             1.9%

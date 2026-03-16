@@ -1,0 +1,11 @@
+zone_id,area_ha,mean_suit,mean_hec,sun_frac,priority,cen_lat,cen_lon,rank,taluk,intervention
+537,722.0,0.321,0.252,0.006,0.4768,13.2799,75.7757,1,Chikkamagaluru,Corridor Easement Strip
+526,446.0,0.325,0.1863,0.007,0.4364,13.2988,75.8234,2,Chikkamagaluru,Corridor Easement Strip
+506,99.0,0.317,0.4346,0.02,0.4239,13.3226,75.7727,3,Chikkamagaluru,Early Warning System + Trenching
+172,952.0,0.324,0.0904,0.002,0.4185,13.6004,76.0602,4,Koppa,Corridor Easement Strip
+539,554.0,0.32,0.066,0.005,0.4119,13.2676,75.8548,5,Chikkamagaluru,Corridor Easement Strip
+487,36.0,0.331,0.401,0.028,0.3895,13.3461,75.7722,6,Chikkamagaluru,Early Warning System + Trenching
+484,73.0,0.328,0.3772,0.0,0.3893,13.3468,75.7947,7,Chikkamagaluru,Bee Fence + Community Watch
+525,32.0,0.339,0.4239,0.0,0.3892,13.3134,75.793,8,Chikkamagaluru,Early Warning System + Trenching
+535,823.0,0.319,0.0,0.004,0.3889,13.2778,76.0155,9,Kadur,Corridor Easement Strip
+27,883.0,0.322,0.0,0.003,0.3877,13.7621,76.122,10,Kalasa,Corridor Easement Strip
