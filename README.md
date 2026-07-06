@@ -1,100 +1,293 @@
-# Agroforestry Encroachment and Human-Elephant Conflict in Chikkamagaluru
+# EcoCorridorAI
+### A Computational Framework for Mapping Agroforestry Encroachment, Landscape Connectivity, and Human–Elephant Conflict Using Earth Observation and Spatial Intelligence
 
-A spatial analysis of agroforestry expansion into wildlife corridors in Chikkamagaluru District, Karnataka, and its relationship with human-elephant conflict (HEC). The study area sits within the Western Ghats coffee-forest mosaic, a landscape where agricultural land use and forest cover exist in close and increasingly contested proximity.
+> A reproducible geospatial analytics framework that integrates satellite remote sensing, landscape ecology, spatial statistics, and computational modelling to investigate how land-use change alters wildlife connectivity and intensifies human–elephant conflict within the Western Ghats biodiversity hotspot.
 
-This project combines satellite-based land cover classification, forest change analysis, resistance-based corridor modelling, and hotspot detection to map where landscape fragmentation is most likely driving conflict between farming communities and Asian elephants.
+EcoCorridorAI is an open-source computational framework designed to analyse the relationship between landscape fragmentation and human–wildlife conflict using multi-source Earth observation data.
 
----
+The platform combines land-cover classification, forest change detection, ecological resistance modelling, least-cost corridor analysis, hotspot detection, and spatial overlay analysis into a single reproducible workflow capable of supporting conservation planning, ecological research, and evidence-based land management.
 
-## Research Context
-
-Chikkamagaluru's forests form part of the Bhadra-Kudremukh-Pushpagiri corridor system, one of the critical connectivity zones for elephant populations in the Western Ghats. As coffee and other agroforestry crops expand into buffer zones and corridor edges, elephant movement paths become compressed and conflict incidents increase.
-
-This work was developed in the context of the **International Conference on Human-Elephant Conflict Management** (Karnataka Forest Department) and draws on publicly available remote sensing datasets to produce spatially explicit conflict-risk maps that can inform conservation planning and land use policy.
+Although demonstrated within the coffee–forest mosaic of Chikkamagaluru District, Karnataka, the analytical framework is transferable to wildlife corridors throughout South and Southeast Asia.
 
 ---
 
-## What the Analysis Does
+# Motivation
 
-- Classifies multi-year land cover from Sentinel-2 imagery to detect agroforestry expansion at the forest edge
-- Quantifies forest cover loss using Hansen Global Forest Watch data to identify where tree cover has declined and in what years
-- Models wildlife corridor resistance based on land cover, slope, and human infrastructure, to map functional connectivity for elephant movement
-- Applies Kernel Density Estimation to reported HEC incidents to produce conflict intensity surfaces
-- Overlays corridor resistance and conflict hotspots to identify spatial coincidence between encroachment, corridor degradation, and conflict pressure
+Human–elephant conflict has emerged as one of the most significant conservation and socio-economic challenges across the Western Ghats.
 
----
+Agricultural expansion, infrastructure development, and landscape fragmentation increasingly compress elephant movement corridors, forcing wildlife into closer contact with farming communities.
 
-## Data Sources
+Traditional ecological studies often investigate land-cover change, wildlife connectivity, or conflict incidents independently.
 
-| Dataset | Source | Resolution |
-|---------|--------|------------|
-| Sentinel-2 multispectral imagery | ESA Copernicus / Google Earth Engine | 10m |
-| Hansen Global Forest Change | University of Maryland / GFW | 30m |
-| SRTM Digital Elevation Model | NASA / USGS | 30m |
-| HEC incident records | Karnataka Forest Department | Point data |
-| Administrative boundaries | Survey of India / OGRDS | Vector |
-| Road network | OpenStreetMap | Vector |
+EcoCorridorAI was developed to integrate these components into a unified computational framework capable of answering a central research question:
+
+> **How does agroforestry expansion reshape landscape connectivity, and where does this fragmentation translate into elevated human–elephant conflict risk?**
+
+Rather than treating conflict as isolated incidents, the framework models conflict as an emergent property of landscape structure.
 
 ---
 
-## Methods
+# Research Objectives
 
-**Land Cover Classification**
-Sentinel-2 bands (B2, B3, B4, B8, B11, B12) and derived indices (NDVI, NDWI, EVI) are used to classify land cover into forest, agroforestry, agriculture, built-up, and water classes using a Random Forest classifier trained on reference samples from the study area.
+The framework is designed to
 
-**Forest Change Detection**
-Hansen GFW tree cover loss layers (year of loss, loss extent) are clipped to the study area to produce a temporal map of deforestation, with particular attention to loss occurring at the forest-agroforestry boundary between 2010 and 2023.
-
-**Corridor Resistance Modelling**
-A resistance surface is constructed by assigning cost values to each land cover class, slope category, and proximity to roads and settlements. Least-cost path analysis identifies the functional movement corridors that remain accessible to elephants given the current landscape configuration.
-
-**Conflict Hotspot Detection**
-Kernel Density Estimation is applied to georeferenced HEC incident records to generate a smoothed conflict intensity surface. KDE bandwidth is selected using cross-validation to balance spatial resolution and statistical stability.
-
-**Integrated Analysis**
-Corridor resistance values and KDE conflict intensity are overlaid to identify spatial clusters where high encroachment pressure coincides with degraded corridor connectivity and elevated conflict frequency.
+- quantify agroforestry expansion along forest boundaries
+- detect long-term forest cover change
+- model functional wildlife connectivity
+- estimate ecological movement resistance
+- identify statistically significant conflict hotspots
+- integrate multiple spatial datasets into conservation-ready decision products
 
 ---
 
-## Project Structure
+# Key Features
 
+## Earth Observation
+
+- Multi-temporal Sentinel-2 imagery
+- Spectral index generation (NDVI, NDWI, EVI)
+- Supervised land-cover classification
+- Automated preprocessing using Google Earth Engine
+
+---
+
+## Forest Change Analysis
+
+- Hansen Global Forest Change
+- Temporal tree-cover loss mapping
+- Forest edge dynamics
+- Multi-year landscape monitoring
+
+---
+
+## Landscape Connectivity
+
+- Ecological resistance surface modelling
+- Cost-distance analysis
+- Least-cost corridor generation
+- Connectivity assessment under fragmented landscapes
+
+---
+
+## Spatial Statistics
+
+- Kernel Density Estimation
+- Spatial overlay analysis
+- Corridor degradation mapping
+- Conflict intensity modelling
+
+---
+
+## Conservation Intelligence
+
+The framework integrates ecological connectivity and conflict intensity to identify
+
+- priority restoration corridors
+- vulnerable agricultural frontiers
+- landscape bottlenecks
+- high-risk conservation zones
+
+---
+
+# Study Area
+
+The study focuses on the coffee–forest mosaic of **Chikkamagaluru District, Karnataka**, located within the central Western Ghats.
+
+This landscape forms part of the broader
+
+- Bhadra
+- Kudremukh
+- Pushpagiri
+
+elephant corridor system, one of India's most ecologically significant connectivity networks.
+
+Rapid expansion of coffee plantations and associated infrastructure has transformed portions of the landscape into fragmented ecological mosaics where human and elephant movement increasingly intersect.
+
+---
+
+# Data Sources
+
+| Dataset | Source | Spatial Resolution |
+|----------|--------|-------------------|
+| Sentinel-2 MSI | ESA Copernicus | 10 m |
+| Hansen Global Forest Change | University of Maryland | 30 m |
+| SRTM DEM | NASA / USGS | 30 m |
+| Human–Elephant Conflict Records | Karnataka Forest Department | Point observations |
+| Administrative Boundaries | Survey of India | Vector |
+| Road Network | OpenStreetMap | Vector |
+
+---
+
+# Computational Workflow
+
+```text
+             Satellite Imagery
+                    │
+                    ▼
+      Land Cover Classification
+                    │
+                    ▼
+         Forest Change Detection
+                    │
+                    ▼
+      Landscape Resistance Surface
+                    │
+                    ▼
+       Least-Cost Corridor Analysis
+                    │
+                    ▼
+ Human–Elephant Conflict Incidents
+                    │
+                    ▼
+      Kernel Density Estimation
+                    │
+                    ▼
+     Integrated Spatial Overlay
+                    │
+                    ▼
+ Conservation Priority Mapping
+                    │
+                    ▼
+ Scientific Maps & Decision Support
 ```
-Agroforestry-Encroachment-in-Chikkamagaluru/
+
+---
+
+# Methodology
+
+EcoCorridorAI follows a reproducible computational workflow consisting of six analytical stages.
+
+## 1. Land Cover Classification
+
+Sentinel-2 multispectral imagery is processed within Google Earth Engine.
+
+Spectral bands together with vegetation and moisture indices are used to classify
+
+- Forest
+- Agroforestry
+- Agriculture
+- Built-up
+- Water
+
+using a Random Forest classifier.
+
+---
+
+## 2. Forest Change Detection
+
+Historical tree-cover loss is quantified using Hansen Global Forest Change data to identify
+
+- forest degradation
+- expanding agricultural frontiers
+- temporal loss dynamics
+
+between 2010 and 2023.
+
+---
+
+## 3. Ecological Resistance Modelling
+
+Landscape resistance is estimated using
+
+- land-cover classes
+- slope
+- roads
+- settlements
+
+to construct a movement-cost surface representing ecological permeability for elephant movement.
+
+---
+
+## 4. Corridor Modelling
+
+Least-cost path analysis identifies functional wildlife corridors that remain ecologically accessible despite landscape fragmentation.
+
+---
+
+## 5. Conflict Hotspot Analysis
+
+Kernel Density Estimation transforms georeferenced conflict records into continuous spatial intensity surfaces.
+
+Bandwidth optimisation balances spatial precision with statistical stability.
+
+---
+
+## 6. Integrated Landscape Analysis
+
+Spatial overlays combine
+
+- resistance
+- corridor accessibility
+- forest loss
+- conflict intensity
+
+to identify regions where ecological degradation most strongly coincides with elevated human–elephant conflict.
+
+---
+
+# Repository Structure
+
+```text
+EcoCorridorAI/
+
 ├── data/
-│   ├── raw/                      # Input datasets (shapefiles, CSVs, imagery)
-│   └── processed/                # Classified rasters, corridor grids, KDE outputs
+│   ├── raw/
+│   └── processed/
+│
 ├── gee/
-│   └── sentinel2_classification.js   # GEE script for land cover classification
+│   └── sentinel2_classification.js
+│
 ├── src/
-│   ├── preprocess.py             # Data loading and CRS harmonisation
-│   ├── classify.py               # Random Forest land cover classification
-│   ├── forest_change.py          # Hansen data processing and loss mapping
-│   ├── corridor.py               # Resistance surface and least-cost path analysis
-│   ├── hotspots.py               # KDE conflict intensity surface
-│   ├── overlay.py                # Integrated encroachment-conflict analysis
-│   └── visualise.py             # Map outputs and figure generation
+│   ├── preprocess.py
+│   ├── classify.py
+│   ├── forest_change.py
+│   ├── corridor.py
+│   ├── hotspots.py
+│   ├── overlay.py
+│   └── visualise.py
+│
 ├── outputs/
-│   ├── maps/                     # Final map figures
-│   └── tables/                   # Summary statistics
+│   ├── maps/
+│   └── tables/
+│
+├── docs/
+│   ├── methodology.md
+│   ├── resistance_model.md
+│   ├── validation.md
+│   ├── limitations.md
+│   └── references.md
+│
 ├── notebooks/
-│   └── exploration.ipynb         # Exploratory analysis and diagnostics
+│   └── exploration.ipynb
+│
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## Getting Started
+# Installation
 
-**Requirements:** Python 3.8 or above, GDAL, Google Earth Engine account (for Sentinel-2 data access)
+## Requirements
+
+- Python 3.10+
+- GDAL
+- Google Earth Engine
+- QGIS (optional)
 
 ```bash
-git clone https://github.com/navvyiin/Agroforestry-Encroachment-in-Chikkamagaluru.git
-cd Agroforestry-Encroachment-in-Chikkamagaluru
+git clone https://github.com/navvyiin/EcoCorridorAI.git
+
+cd EcoCorridorAI
+
+python -m venv env
+
+source env/bin/activate
+
 pip install -r requirements.txt
 ```
 
-Authenticate your GEE account before running the classification script:
+Authenticate Google Earth Engine
 
 ```bash
 earthengine authenticate
@@ -102,60 +295,157 @@ earthengine authenticate
 
 ---
 
-## Running the Analysis
+# Running the Framework
 
-Run the full pipeline in sequence:
+Execute the complete analytical workflow
 
 ```bash
 python src/preprocess.py
+
 python src/classify.py
+
 python src/forest_change.py
+
 python src/corridor.py
+
 python src/hotspots.py
+
 python src/overlay.py
+
 python src/visualise.py
 ```
 
-Or run the GEE classification script (`gee/sentinel2_classification.js`) directly in the Google Earth Engine Code Editor and export results to the `data/processed/` directory before running the Python pipeline.
+Alternatively, run the Google Earth Engine classification script directly within the Earth Engine Code Editor before executing the remaining Python pipeline.
 
 ---
 
-## Tech Stack
+# Outputs
 
-`Python` `Google Earth Engine` `GeoPandas` `Rasterio` `Scikit-learn` `SciPy` `QGIS` `Shapely` `Matplotlib`
+The framework produces
 
----
-
-## Key Findings
-
-- Agroforestry expansion is concentrated along the western and southern edges of the Bhadra Wildlife Sanctuary buffer zone
-- Hansen data indicates accelerated tree cover loss at forest-coffee boundaries between 2018 and 2022
-- Corridor resistance is highest in sectors where road infrastructure and estate expansion have converged
-- KDE conflict hotspots show strong spatial overlap with zones of lowest remaining corridor connectivity
-- Several village clusters fall within areas of both high encroachment pressure and degraded corridor function, indicating elevated long-term conflict risk
-
----
-
-## Limitations
-
-- HEC incident data completeness depends on Karnataka Forest Department reporting coverage, which may underrepresent incidents in remote areas
-- Sentinel-2 classification accuracy is affected by cloud cover in the monsoon season
-- Corridor modelling uses a simplified resistance schema and does not account for elephant social behaviour or seasonal movement patterns
+- Classified land-cover maps
+- Forest loss maps
+- Ecological resistance surfaces
+- Wildlife corridor maps
+- Conflict hotspot maps
+- Integrated conservation priority maps
+- Publication-ready figures
+- Summary statistics
 
 ---
 
-## Relevance
+# Engineering Challenges
 
-This work sits at the intersection of conservation planning, remote sensing, and spatial ML. The methods are transferable to other forest-agriculture boundary contexts across South and Southeast Asia where land use pressure on wildlife corridors is increasing.
+The greatest challenge was integrating heterogeneous spatial datasets into a consistent ecological modelling framework.
+
+Each dataset differed in
+
+- spatial resolution
+- coordinate reference systems
+- temporal coverage
+- classification schemes
+- uncertainty
+
+Developing a reproducible preprocessing pipeline capable of harmonising satellite imagery, forest change products, terrain models, ecological variables, and conflict observations required substantially more engineering effort than implementing the machine learning algorithms themselves.
+
+A second challenge involved ecological resistance modelling.
+
+Unlike conventional machine learning problems, movement resistance cannot be learned directly from labelled data.
+
+Instead, resistance values were derived from ecological literature and landscape characteristics, requiring careful integration of computational methods with ecological domain knowledge.
 
 ---
 
-## Citation
+# Applications
 
-If you use this work or adapt the methods, please cite this repository and acknowledge the Karnataka Forest Department for the HEC incident data.
+EcoCorridorAI can support
+
+- Conservation Planning
+- Wildlife Corridor Assessment
+- Landscape Ecology
+- Forest Management
+- Environmental Impact Assessment
+- Biodiversity Monitoring
+- Spatial Decision Support
+- Climate Adaptation Planning
+- Geospatial Artificial Intelligence Research
 
 ---
 
-## License
+# Current Limitations
 
-MIT License. © 2026 navvyiin
+Current limitations include
+
+- resistance values derived from expert-informed assumptions rather than GPS telemetry
+- dependence on reported conflict incidents
+- cloud contamination in optical satellite imagery
+- static corridor modelling
+- absence of behavioural movement simulation
+
+These limitations represent opportunities for future research rather than software deficiencies.
+
+---
+
+# Future Work
+
+Future development will explore
+
+- Graph Neural Networks for wildlife movement prediction
+- Agent-based elephant movement simulation
+- Temporal corridor evolution modelling
+- Foundation Models for Earth Observation
+- SAR integration using Sentinel-1
+- Cloud-native raster analytics
+- Distributed geospatial processing with Dask
+- Climate-driven habitat suitability modelling
+- Real-time conservation dashboards
+- Reinforcement learning for landscape restoration optimisation
+
+---
+
+# Scientific Significance
+
+EcoCorridorAI demonstrates how remote sensing, spatial statistics, machine learning, and ecological modelling can be integrated into a unified computational framework for biodiversity conservation.
+
+Rather than treating conservation mapping as a sequence of disconnected GIS operations, the framework formalises landscape analysis into a reproducible scientific workflow capable of supporting both ecological research and practical conservation decision-making.
+
+---
+
+# Citation
+
+If you use EcoCorridorAI in academic work, please cite
+
+```text
+Naval Kishore
+
+EcoCorridorAI: A Computational Framework for Mapping Agroforestry Encroachment, Landscape Connectivity, and Human–Elephant Conflict Using Earth Observation and Spatial Intelligence.
+
+GitHub Repository, 2026.
+```
+
+Please also acknowledge the Karnataka Forest Department for the Human–Elephant Conflict incident records where applicable.
+
+---
+
+# License
+
+Released under the MIT License.
+
+---
+
+# Acknowledgements
+
+EcoCorridorAI builds upon the open scientific ecosystem provided by
+
+- Google Earth Engine
+- ESA Copernicus Programme
+- Hansen Global Forest Change
+- GeoPandas
+- Rasterio
+- scikit-learn
+- SciPy
+- GDAL
+- Shapely
+- Matplotlib
+
+whose contributions have made modern computational ecology and geospatial artificial intelligence possible.
